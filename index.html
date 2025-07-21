@@ -1,91 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Google Sheet Viewer</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.4/tabletop.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Google Sheet Embedded</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
       margin: 0;
-      background: #f9f9f9;
+      padding: 0;
+      font-family: sans-serif;
     }
-    table {
+    iframe {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      text-align: left;
-    }
-    th {
-      background-color: #007bff;
-      color: white;
-    }
-    @media (max-width: 600px) {
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      tr {
-        margin-bottom: 15px;
-      }
-      td {
-        text-align: right;
-        position: relative;
-        padding-left: 50%;
-      }
-      td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        width: 45%;
-        text-align: left;
-        font-weight: bold;
-      }
+      height: 90vh;
+      border: none;
     }
   </style>
 </head>
 <body>
 
-  <h2>Live Google Sheet Data</h2>
-  <div id="sheet-data"></div>
+  <h2 style="text-align: center; margin: 20px 0;">Live Google Sheet</h2>
 
-  <script>
-    function showInfo(data) {
-      let html = '<table><thead><tr>';
-
-      // Get table headers from the first row keys
-      const headers = Object.keys(data[0]);
-      headers.forEach(header => {
-        html += `<th>${header}</th>`;
-      });
-      html += '</tr></thead><tbody>';
-
-      // Loop through data
-      data.forEach(row => {
-        html += '<tr>';
-        headers.forEach(header => {
-          html += `<td data-label="${header}">${row[header]}</td>`;
-        });
-        html += '</tr>';
-      });
-
-      html += '</tbody></table>';
-      document.getElementById('sheet-data').innerHTML = html;
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      Tabletop.init({
-        key: '1FN81vr38lmAoiwid5HmfOwENVTde_lUiOnZlPPGuRbc', // Replace with your actual Sheet ID
-        callback: showInfo,
-        simpleSheet: true
-      });
-    });
-  </script>
+  <iframe src="https://docs.google.com/spreadsheets/d/1FN81vr38lmAoiwid5HmfOwENVTde_lUiOnZlPPGuRbc/edit?usp=drivesdk"></iframe>
 
 </body>
-</html>#
+</html>
